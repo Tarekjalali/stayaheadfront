@@ -1,5 +1,7 @@
 import { CLEARERROR, HANDLEERROR } from "../ActionTypes/errorTypes"
 
+
+
 export const hadnleError =(msg)=>async(dispatch)=>{
 
     const id  = Math.random()

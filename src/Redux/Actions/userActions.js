@@ -2,12 +2,16 @@ import axios from 'axios'
 import { ACTIVATE, GETCURRENTUSER, LOGIN, LOGOUT, REGISTER } from '../ActionTypes/userTypes'
 import { hadnleError } from './errorActions'
 
+require('dotenv').config()
+
+const API_BASE_URL = process.env.API_BASE_URL
+
 
 export const login =(credentials , navigate)=>async(dispatch)=>{
 
     try {
 
-        const res = await axios.post('/api/users/signin', credentials)
+        const res = await axios.post(`${API_BASE_URL}/api/users/signin`, credentials)
         dispatch(
             {
                 type : LOGIN,
@@ -27,7 +31,7 @@ export const login =(credentials , navigate)=>async(dispatch)=>{
 
 export const register = (userData, onSuccess) => async (dispatch) => {
     try {
-      const res = await axios.post('/api/users/createAccount', userData);
+      const res = await axios.post(`${API_BASE_URL}/api/users/createAccount`, userData);
       dispatch({
         type: REGISTER,
         payload: res.data.msg,
@@ -45,7 +49,7 @@ export const register = (userData, onSuccess) => async (dispatch) => {
   export const activateAccount =(code)=>async(dispatch)=>{
 
     try {
-        const res = await axios.get(`/api/users/activate/${code}`)
+        const res = await axios.get(`${API_BASE_URL}/api/users/activate/${code}`)
         dispatch(
             {
                 type : ACTIVATE,
@@ -66,7 +70,7 @@ export const register = (userData, onSuccess) => async (dispatch) => {
 
     try {
         const config = {headers : { authorized : localStorage.getItem('token')}}
-        const res = await axios.get('/api/users/getcurrentuser',config)
+        const res = await axios.get(`${API_BASE_URL}/api/users/getcurrentuser`,config)
 
         dispatch(
             { 
@@ -99,7 +103,7 @@ export const register = (userData, onSuccess) => async (dispatch) => {
   export const deleteAccount =(id)=>async(dispatch)=>{
 
     try {
-        await axios.delete(`/api/users/deleteAccount/${id}`)
+        await axios.delete(`${API_BASE_URL}/api/users/deleteAccount/${id}`)
 
         dispatch(logout())
     } catch (error) {
@@ -111,7 +115,7 @@ export const register = (userData, onSuccess) => async (dispatch) => {
   export const updateAccount=(id, change)=>async(dispatch)=>{
 
     try {
-        await axios.put(`/api/users/updateAccount/${id}`,change)
+        await axios.put(`${API_BASE_URL}/api/users/updateAccount/${id}`,change)
 
         dispatch(getcurrentuser())
     } catch (error) {
@@ -122,7 +126,7 @@ export const register = (userData, onSuccess) => async (dispatch) => {
 
   export const updatePassword = (id, change) => async (dispatch) => {
     try {
-      const response = await axios.put(`/api/users/updatePassword/${id}`, change);
+      const response = await axios.put(`${API_BASE_URL}/api/users/updatePassword/${id}`, change);
   
       
   
