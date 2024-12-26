@@ -37,7 +37,7 @@ export const addTask=(id,task)=>async(dispatch)=>{
 export const deleteTask=(TaskId , id)=>async(dispatch)=>{
 
     try {
-        await axios.delete(`https://stayahedback.onrender.com/api/tasks/createTask/api/tasks/deleteTask/${TaskId}`)
+        await axios.delete(`https://stayahedback.onrender.com/api/tasks/deleteTask/${TaskId}`)
 
         dispatch(getmytasks(id))
     } catch (error) {
@@ -50,7 +50,7 @@ export const deleteTask=(TaskId , id)=>async(dispatch)=>{
 export const updateTask =(taskId,id, changes)=>async(dispatch)=>{
 
     try {
-        await axios.put(`https://stayahedback.onrender.com/api/tasks/createTask/api/tasks/updateTask/${taskId}`,changes)
+        await axios.put(`https://stayahedback.onrender.com/api/tasks/updateTask/${taskId}`,changes)
 
         dispatch(getmytasks (id))
     } catch (error) {
