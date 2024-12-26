@@ -2,9 +2,9 @@ import axios from 'axios'
 import { ACTIVATE, GETCURRENTUSER, LOGIN, LOGOUT, REGISTER } from '../ActionTypes/userTypes'
 import { hadnleError } from './errorActions'
 
-require('dotenv').config()
 
-const API_BASE_URL = process.env.API_BASE_URL
+
+const API_BASE_URL = "https://stayahedback.onrender.com"
 
 
 export const login =(credentials , navigate)=>async(dispatch)=>{
