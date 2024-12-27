@@ -6,6 +6,12 @@ import { Button, Label, Modal, TextInput } from "flowbite-react";
 
 const Register = () => {
   const activationMessage = useSelector(state=>state.userReducer.activationMessage)
+
+  const handleactivationMsg = ()=>{
+    activationMessage === "Account created. Please check your email to activate your account." ? alert('Please activate your account first') : navigateToLogin()
+
+  }
+
   const handleActivate =(a)=>{
       a.preventDefault()
       dispatch(activateAccount(code))
@@ -119,7 +125,9 @@ const Register = () => {
                       <div>
                         
                         <div style={{width :'560px'}} className="mb-2 block">
+                        
                           <Label value={activationMessage} />
+                          {errors.length !== 0 && errors.map((el, i) => <h1 key={i}>{el.msg}</h1>)}
                         </div>
                         <TextInput onChange={(e)=>setCode(e.target.value)} style={{width :'320px'}}
                           placeholder="Enter activation code"                                
@@ -128,11 +136,12 @@ const Register = () => {
                         
                        
                       </div>
+                      
                       <div className="flex gap-2">
-                        <Button color="gray" onClick={()=>setOpenModal(false)}>
-                          Cancel
+                        <Button color="gray" onClick={()=>handleactivationMsg()}>
+                          Login
                         </Button>
-                        <Button color="success" onClick={(e)=>handleActivate(e)} >
+                        <Button color="success" onClick={(e)=>handleActivate(e)} disabled={!code} >
                           Activate
                         </Button>
                       </div>
