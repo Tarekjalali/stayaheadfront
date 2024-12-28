@@ -54,7 +54,7 @@ const Profile = () => {
 
   const handleSave = (a) => {
     a.preventDefault();
-    dispatch(addTask(user._id, { title, deadline, owner: user._id }));
+    dispatch(addTask(user._id, { title, deadline, Taskowner: user._id }));
     setOpenPopover(false);
     setTitle("");
     setDeadline("");
