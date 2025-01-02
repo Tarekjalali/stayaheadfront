@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { ACTIVATE, GETCURRENTUSER, LOGIN, LOGOUT, REGISTER } from '../ActionTypes/userTypes'
-import { hadnleError } from './errorActions'
+import {  handleError } from './errorActions'
 
 
 export const login =(credentials , navigate)=>async(dispatch)=>{
@@ -18,7 +18,7 @@ export const login =(credentials , navigate)=>async(dispatch)=>{
     } catch (error) {
         error.response.data.errors.forEach(element => {
 
-            dispatch(hadnleError(element.msg))
+            dispatch(handleError(element.msg))
             
         });
     }
@@ -37,7 +37,7 @@ export const register = (userData, onSuccess) => async (dispatch) => {
       onSuccess();
     } catch (error) {
       error.response.data.errors.forEach((element) => {
-        dispatch(hadnleError(element.msg));
+        dispatch(handleError(element.msg));
       });
     }
   };
@@ -55,7 +55,7 @@ export const register = (userData, onSuccess) => async (dispatch) => {
     } catch (error) {
         error.response.data.errors.forEach(element => {
 
-            dispatch(hadnleError(element.msg))
+            dispatch(handleError(element.msg))
             
         });
     }
@@ -78,7 +78,7 @@ export const register = (userData, onSuccess) => async (dispatch) => {
     } catch (error) {
         error.response.data.errors.forEach(element => {
 
-            dispatch(hadnleError(element.msg))
+            dispatch(handleError(element.msg))
             
         });
     }
