@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GETMYTASKS } from '../ActionTypes/TaskTypes'
+import { DONE, GETMYTASKS, NOTDONE, TODAY } from '../ActionTypes/TaskTypes'
 
 export const getmytasks =(id)=>async(dispatch)=>{
 
@@ -56,3 +56,18 @@ export const updateTask =(taskId,id, changes)=>async(dispatch)=>{
     }
 
 }
+
+export const today=(todayDate)=>{
+    
+    return {
+        type: TODAY,
+        payload : todayDate
+    }
+}
+
+export const done =()=>{
+    return{
+        type :DONE
+    }
+}
+

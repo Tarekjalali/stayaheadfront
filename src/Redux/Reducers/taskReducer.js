@@ -1,16 +1,31 @@
-import { GETMYTASKS } from "../ActionTypes/TaskTypes"
+import { DONE, GETMYTASKS, TODAY } from "../ActionTypes/TaskTypes";
 
 const initialState = {
-    myTasks :[]
-}
+  myTasks: [],
+  filter : null
+};
 
-const taskReducer =(state = initialState , action)=>{
+const taskReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case GETMYTASKS:return { ...state, myTasks: action.payload };
 
-    switch (action.type) {
-        case GETMYTASKS : return {...state, myTasks : action.payload}
-        default: return state
-    }
+    case DONE : return {...state, myTasks : state.myTasks.filter((el,i,t)=>el.isDone == true)}
 
-}
+   
 
-export default taskReducer
+    case TODAY:
+      const todayDate = action.payload; // Expecting 'yyyy-mm-dd' format in the payload
+      return {
+        ...state,
+        myTasks: state.myTasks.filter((task) => {
+          const taskDate = new Date(task.deadline).toISOString().split('T')[0];
+          return taskDate === todayDate;
+        }),
+      };
+    
+    default:
+      return state;
+  }
+};
+
+export default taskReducer;

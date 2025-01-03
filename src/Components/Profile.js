@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getcurrentuser, logout } from "../Redux/Actions/userActions";
-import { addTask, deleteTask, getmytasks, updateTask } from "../Redux/Actions/TaskActions";
+import { addTask, deleteTask, done, getmytasks,  today, updateTask } from "../Redux/Actions/TaskActions";
 
 import { Button, Popover, Label, Modal, TextInput } from "flowbite-react";
 import { Link } from "react-router-dom";
@@ -11,6 +11,7 @@ import Account from "./Account";
 
 const Profile = () => {
   const [openPopover, setOpenPopover] = useState(false);
+  const todayDate = new Date().toISOString().split('T')[0];
   
   const [title, setTitle] = useState("");
   const [deadline, setDeadline] = useState("");
@@ -278,6 +279,31 @@ const Profile = () => {
           >
             Home
           </button></Link>
+
+          
+          <div style={{position: 'fixed',top: '200px',left: '400px' , display : "flex" , justifyContent :'space-around'}}>
+          <button onClick={()=>dispatch(today(todayDate))} style={{ background: 'linear-gradient(to right, #fffdd0, #f5f5dc)',}}
+          type="button"
+          className="text-black hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+          For Today
+          </button>
+
+          <button onClick={()=>dispatch(done())}  style={{ background: 'linear-gradient(to right, #fffdd0, #f5f5dc)',}}
+          type="button"
+          className="text-black hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+          Done
+          </button>
+
+          <button onClick={() => window.location.reload()} style={{ background: 'linear-gradient(to right, #fffdd0, #f5f5dc)',}}
+          type="button"
+          className="text-black hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+          Reset
+          </button>
+          </div>
+
+          
+          
+          
           
           <Link onClick={()=>dispatch(logout())}><button style={{position :'fixed' , top :'250px' , right :'100px'}}
             type="button"
