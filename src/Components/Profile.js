@@ -294,7 +294,7 @@ const Profile = () => {
           Done
           </button>
 
-          <button onClick={() => window.location.reload()} style={{ background: 'linear-gradient(to right, #fffdd0, #f5f5dc)',}}
+          <button onClick={() => dispatch(getmytasks(user._id))} style={{ background: 'linear-gradient(to right, #fffdd0, #f5f5dc)',}}
           type="button"
           className="text-black hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 shadow-lg font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
           Reset
