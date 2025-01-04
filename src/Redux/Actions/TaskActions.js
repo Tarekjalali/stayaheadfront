@@ -1,10 +1,10 @@
 import axios from 'axios'
-import { DONE, GETMYTASKS, NOTDONE, TODAY } from '../ActionTypes/TaskTypes'
+import { DONE, GETMYTASKS,  TODAY } from '../ActionTypes/TaskTypes'
 
 export const getmytasks =(id)=>async(dispatch)=>{
 
     try {
-        const res = await axios.get(`https://stayahedback.onrender.com/api/tasks/getmyTasks/${id}`)
+        const res = await axios.get(`https://stayahedback.onrender.com/api/tasks/getmyTasksDecrypted/${id}`)
 
         dispatch(
             {
@@ -24,7 +24,7 @@ export const addTask=(id,task)=>async(dispatch)=>{
 
     try { console.log(id)
         console.log(task)
-        await axios.post('https://stayahedback.onrender.com/api/tasks/createTask',task)
+        await axios.post('https://stayahedback.onrender.com/api/tasks/createEncryptedTask',task)
         dispatch(getmytasks(id))
     } catch (error) {
         console.log(error)
