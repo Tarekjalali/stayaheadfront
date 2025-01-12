@@ -18,21 +18,20 @@ const Login = () => {
   };
 
   return (
-    <div 
-      style={{
-        backgroundImage: "url('https://i.ibb.co/T09vbp1/log-enhanced.png')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        height: '100vh',
-        width: '100%', 
-        display: 'flex',
-        alignItems: 'center',
-      }}
+    <div
+      className="relative flex justify-center items-center w-full h-screen bg-cover bg-center"
+      style={{ backgroundImage: "url('https://i.ibb.co/T09vbp1/log-enhanced.png')" }}
     >
-      <Link to={'/'}><button  type="button" class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Home</button></Link>
+      <Link to="/">
+        <button
+          type="button"
+          className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center absolute top-5 left-5"
+        >
+          Home
+        </button>
+      </Link>
 
-      
-      <div className="max-w-sm mx-auto px-4 py-6 bg-white rounded-lg shadow-lg" style={{ backgroundColor: 'rgba(255, 255, 255 )' }}>
+      <div className="max-w-sm sm:max-w-md lg:max-w-lg mx-auto px-4 py-6 bg-white rounded-lg shadow-lg">
         {/* Displaying errors */}
         {errors.length !== 0 && errors.map((el, i) => <h1 key={i}>{el.msg}</h1>)}
 
