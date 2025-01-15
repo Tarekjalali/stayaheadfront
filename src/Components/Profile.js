@@ -137,7 +137,7 @@ const Profile = () => {
   {el.title}
 </h3>
 <div style={{display :'flex'}}>
-        <h3 style={{ marginRight: "10px", fontSize: "clamp(1rem, 1.1vw, 2rem)", whiteSpace: "nowrap" }}>
+        <h3 style={{ marginLeft: "10px", fontSize: "clamp(1rem, 1.1vw, 2rem)", whiteSpace: "nowrap" }}>
           {el.deadline
             ? el.deadline.slice(5, 10).split("-").reverse().join("-")
             : "no deadline"}
