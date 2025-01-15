@@ -128,19 +128,16 @@ const Profile = () => {
   {myTasks &&
     myTasks.map((el) => (
       <div key={el._id} style={{ display: "flex", marginBottom: "10px", justifyContent :'space-between'}}>
-       <h3
-  style={{
-    width: "calc(100% - 240px)",
-    fontSize: "clamp(1rem, 1.1vw, 2rem)",
+       <h3 className="w-[calc(100%-240px)] text-[clamp(1rem,1.1vw,2rem)] break-words normal-case leading-relaxed md:w-[calc(100%-120px)]"
+   style={{
     textDecoration: el.isDone ? "line-through" : "none",
-    overflowWrap: "break-word",
-    whiteSpace: "nowrap",
+   
   }}
 >
   {el.title}
 </h3>
 <div style={{display :'flex'}}>
-        <h3 style={{ marginRight: "10px", fontSize: "clamp(1rem, 1.1vw, 2rem)" }}>
+        <h3 style={{ marginRight: "10px", fontSize: "clamp(1rem, 1.1vw, 2rem)", whiteSpace: "nowrap" }}>
           {el.deadline
             ? el.deadline.slice(5, 10).split("-").reverse().join("-")
             : "no deadline"}
