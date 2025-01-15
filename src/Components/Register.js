@@ -13,14 +13,22 @@ const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
   const [code, setCode] = useState('');
   const [openModal, setOpenModal] = useState(false);
 
   const handleRegister = (e) => {
     e.preventDefault();
-    dispatch(register({ name, email, password }, () => setOpenModal(true)));
+  
+   
+    if (password !== passwordConfirm) {
+      
+      alert("Your passwords do not match");
+    } else {
+      
+      dispatch(register({ name, email, password }, () => setOpenModal(true)));
+    }
   };
-
   const handleActivationMsg = () => {
     activationMessage === "Account created. Please check your email to activate your account."
       ? alert('Please activate your account first')
@@ -105,8 +113,22 @@ const Register = () => {
               id="password"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="•••••••••"
-              value={password}
+              
               onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-5">
+            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+              Confirm password
+            </label>
+            <input
+              type="password"
+              id="password"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="•••••••••"
+              
+              onChange={(e) => setPasswordConfirm(e.target.value)}
               required
             />
           </div>
@@ -134,36 +156,37 @@ const Register = () => {
 
       {/* Modal for account activation */}
       <div>
-        <Modal show={openModal} onClose={() => setOpenModal(false)}>
-          <Modal.Header>Activate your Account</Modal.Header>
-          <Modal.Body>
-            <div className="space-y-6">
-              <div className="flex w-64 flex-col gap-4 p-4 text-sm text-gray-500 dark:text-gray-400">
-                <div>
-                  <div style={{ width: '560px' }} className="mb-2 block">
-                    <Label value={activationMessage} />
-                    {errors.length !== 0 && errors.map((el, i) => <h1 key={i}>{el.msg}</h1>)}
-                  </div>
-                  <TextInput
-                    onChange={(e) => setCode(e.target.value)}
-                    style={{ width: '320px' }}
-                    placeholder="Enter activation code"
-                  />
-                </div>
-
-                <div className="flex gap-2">
-                  <Button color="gray" onClick={handleActivationMsg}>
-                    Login
-                  </Button>
-                  <Button color="success" onClick={handleActivate} disabled={!code}>
-                    Activate
-                  </Button>
-                </div>
-              </div>
+  <Modal show={openModal} onClose={() => setOpenModal(false)}>
+    <Modal.Header>Activate your Account</Modal.Header>
+    <Modal.Body>
+      <div className="space-y-6">
+        <div className="flex w-full max-w-md flex-col gap-4 p-4 text-sm text-gray-500 dark:text-gray-400">
+          <div>
+            <div className="mb-2 block">
+              <Label value={activationMessage} />
+              {errors.length !== 0 && errors.map((el, i) => <h1 key={i}>{el.msg}</h1>)}
             </div>
-          </Modal.Body>
-        </Modal>
+            <TextInput
+              onChange={(e) => setCode(e.target.value)}
+              className="w-full sm:w-80"  // Full width on small screens, 80 on larger screens
+              placeholder="Enter activation code"
+            />
+          </div>
+
+          <div className="flex gap-2 flex-wrap">
+            <Button color="gray" onClick={handleActivationMsg}>
+              Login
+            </Button>
+            <Button color="success" onClick={handleActivate} disabled={!code}>
+              Activate
+            </Button>
+          </div>
+        </div>
       </div>
+    </Modal.Body>
+  </Modal>
+</div>
+
     </div>
   );
 };

@@ -127,20 +127,22 @@ const Profile = () => {
 >
   {myTasks &&
     myTasks.map((el) => (
-      <div key={el._id} style={{ display: "flex", marginBottom: "10px", justifyContent :'space-evenly' }}>
+      <div key={el._id} style={{ display: "flex", marginBottom: "10px", justifyContent :'space-between'}}>
        <h3
   style={{
-    width: "calc(100% - 240px)", 
-    fontSize: "large",
+    width: "calc(100% - 240px)",
+    fontSize: "clamp(1rem, 1.1vw, 2rem)",
     textDecoration: el.isDone ? "line-through" : "none",
-    overflowWrap: "break-word", 
+    overflowWrap: "break-word",
+    whiteSpace: "nowrap",
   }}
 >
   {el.title}
 </h3>
-        <h3 style={{ marginRight: "15px", fontSize: "large" }}>
+<div style={{display :'flex'}}>
+        <h3 style={{ marginRight: "10px", fontSize: "clamp(1rem, 1.1vw, 2rem)" }}>
           {el.deadline
-            ? el.deadline.slice(0, 10).split("-").reverse().join("-")
+            ? el.deadline.slice(5, 10).split("-").reverse().join("-")
             : "no deadline"}
         </h3>
 
@@ -206,6 +208,7 @@ const Profile = () => {
               d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"
             />
           </svg>
+        </div>
         </div>
       </div>
     ))}
